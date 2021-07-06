@@ -5,21 +5,21 @@
         <div class="col-md-12">
             <ul class="breadcrumb">
                 <li><a href="{{ url('/home') }}">Dashboard</a></li>
+                <li><a href="{{ url('/mahasiswa/pengajuanKp') }}">Pengajuan</a></li>
                 <li class="active">Pengajuan KP</li>
             </ul>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2 class="panel-title">Pengajuan</h2>
+                    <h2 class="panel-title">Form Pengajuan</h2>
                 </div>
-                <div class="panel-body">
-                    <p> <a class="btn btn-primary" href="{{ url('/mahasiswa/pengajuanKp/create') }}">Tambah</a></p>
-                    {!! $html->table(['class'=>'table-striped']) !!}
+                <div class="panel-body"> 
+                    {!! Form::open(['url' => route('mahasiswa.pengajuanKp.store'),
+                    'method' => 'post', 'files'=>'true', 'class'=>'form-horizontal']) !!}
+                    @include('pengajuanKp._form')
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
-@section('scripts')
-{!! $html->scripts() !!}
 @endsection

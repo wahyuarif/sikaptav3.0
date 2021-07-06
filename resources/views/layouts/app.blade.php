@@ -45,7 +45,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    Sikapta.
                 </a>
             </div>
 
@@ -61,6 +61,7 @@
                     @endrole
                     @role('mahasiswa')
                     <li><a href="{{ route('mahasiswa.pengajuanKp.index') }}">Pengajuan</a></li>
+                    <li><a href="{{ route('mahasiswa.bimbingans.index') }}">Bimbingan</a></li>
                     @endrole
                 </ul>
                 <!-- Right Side Of Navbar -->
@@ -76,6 +77,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-user-o" aria-hidden="true"></i>Setting</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>

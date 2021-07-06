@@ -48,5 +48,6 @@ Route::group(['prefix'=>'mahasiswa', 'middleware'=>['auth']], function () {
 Route::group(['middleware' => 'web'], function() {
     Route::group(['prefix'=>'mahasiswa', 'middleware'=>['auth', 'role:mahasiswa']], function () {
         Route::resource('pengajuanKp', 'PengajuanKpController');
+        Route::resource('bimbingans', 'BimbinganController');
     });
 });

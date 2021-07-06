@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePengajuanKpsTable extends Migration
+class CreateDosensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,12 @@ class CreatePengajuanKpsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pengajuan_kps', function (Blueprint $table) {
+        Schema::create('dosens', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('no_pengajuan');
-            $table->string('judul_pengajuan');
-            $table->string('kerangka_pikir');
-            $table->string('no_telp');
-            $table->string('jumlah_pegawai');
-            $table->string('dosen_pembimbing');
+            $table->string('nm_dosen');
+            $table->string('jabatan');
+            $table->string('prodi');
+            $table->string('fakultas');
             $table->string('status');
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ class CreatePengajuanKpsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('pengajuan_kps');
+        Schema::drop('dosens');
     }
 }
