@@ -5,6 +5,7 @@
         {!! $errors->first('nama', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
+
 <div class="form-group {!! $errors->has('kode_prodi') ? 'has-error' : '' !!}">
     {!! Form::label('kode_prodi', 'Prodi', ['class'=>'col-md-2 control-label']) !!}
     <div class="col-md-4">

@@ -31,11 +31,11 @@
     </div>
 </div>
 
-<div class="form-group{{ $errors->has('telphone') ? ' has-error' : '' }}">
-    {!! Form::label('telphone', 'No Telp.', ['class'=>'col-md-4 control-label']) !!}
+<div class="form-group{{ $errors->has('no_telp') ? ' has-error' : '' }}">
+    {!! Form::label('no_telp', 'No Telp.', ['class'=>'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('telphone', null, ['class'=>'form-control']) !!}
-        {!! $errors->first('telphone', '<p class="help-block">:message</p>') !!}
+        {!! Form::text('no_telp', null, ['class'=>'form-control']) !!}
+        {!! $errors->first('no_telp', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 

@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Session;
+// use App\Prodi;
 use App\Mahasiswa;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
+// use Illuminate\Support\Facades\Session;
+
 
 class MahasiswaController extends Controller
 {
@@ -62,8 +65,11 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['nama' => 'required|unique:mahasiswas']);
-        $mahasiswa = Mahasiswa::create($request->only('nama'));
+        $this->validate($request, [
+            'nama'          => 'required',
+            'kode_prodi'    => 'required|exists:prodis, kode_prodi'
+        ]);
+        $mahasiswa = Mahasiswa::create($request->only('nama', 'kode_prodi'));
         return redirect()->route('mahasiswa.index');
         Session::flash("flash_notification", [
             "level"=>"success",
@@ -127,6 +133,24 @@ class MahasiswaController extends Controller
         "message"=>"Mahasiswa berhasil dihapus"
         ]);
         return redirect()->route('admin.mahasiswa.index');
+
+    }
+
+    // export
+    public function export() {
+        return view('mahasiswas.export');
+    }
+
+    public function exportPost(Request $request) {
+
+    }
+
+    // import
+    public function generateExcelTemplate() {
+
+    }
+
+    public function importExcel(Request $request) {
 
     }
 }

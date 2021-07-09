@@ -12,7 +12,10 @@
                     <h2 class="panel-title">Mahasiswa</h2>
                 </div>
                 <div class="panel-body">
-                    <p> <a class="btn btn-primary" href="{{ route('admin.mahasiswa.create') }}">Tambah</a> </p>
+                    <p> 
+                        <a class="btn btn-primary" href="{{ route('admin.mahasiswa.create') }}">Tambah</a>
+                        <a class="btn btn-primary" href="{{ url('/admin/export/mahasiswas') }}">Export</a> 
+                    </p>
                     {!! $html->table(['class'=>'table-striped']) !!}
                 </div>
             </div>

@@ -32,6 +32,26 @@ Route::group(['middleware' => 'web'], function() {
     Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'role:admin']], function () {
         Route::resource('mahasiswa', 'MahasiswaController');
         Route::resource('prodi', 'ProdiController');
+
+        // Export
+        Route::get('export/mahasiswas', [
+            'as'    => 'export.mahasiswas',
+            'uses'  => 'MahasiswaController@export'
+        ]);
+        Route::post('export/mahasiswas', [
+            'as'    => 'export.mahasiswa.post',
+            'uses'  => 'MahasiswaController@exportPost'
+        ]);
+
+        // import
+        Route::get('template/mahasiswas', [
+            'as' => 'template.mahasiswas',
+            'uses' => 'MahasiswaController@generateExcelTemplate'
+            ]);
+        Route::post('import/mahasiswas', [
+            'as' => 'import.mahasiswas',
+            'uses' => 'MahasiswaController@importExcel'
+        ]);
     });
 });
 
