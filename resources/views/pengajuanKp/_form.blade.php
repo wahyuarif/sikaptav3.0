@@ -2,7 +2,7 @@
 <div class="form-group{{ $errors->has('no_pengajuan') ? ' has-error' : '' }}">
     {!! Form::label('no_pengajuan', 'No Pengajuan', ['class'=>'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('no_pengajuan', $noPengajuan, ['class'=>'form-control', 'disabled']) !!}
+        {!! Form::text('no_pengajuan', $noPengajuan, ['class'=>'form-control', 'readonly']) !!}
         {!! $errors->first('no_pengajuan', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
