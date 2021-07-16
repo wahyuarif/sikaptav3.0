@@ -36,13 +36,31 @@ class PengajuanKpController extends Controller
         $html = $htmlBuilder
             ->addColumn(['data' => 'no_pengajuan', 'name'=>'no_pengajuan', 'title'=>'No Pengajuan'])
             ->addColumn(['data' => 'judul_pengajuan', 'name'=>'judul_pengajuan', 'title'=>'Judul Pengajuan'])
-            // ->addColumn(['data' => 'kerangka_pikir', 'name'=>'kerangka_pikir', 'title'=>'Kerangka Pikir'])
             ->addColumn(['data' => 'no_telp', 'name'=>'no_telp', 'title'=>'No Telphone'])
             ->addColumn(['data' => 'jumlah_pegawai', 'name'=>'jumlah_pegawai', 'title'=>'Jumlah Pegawai'])
             ->addColumn(['data' => 'status', 'name'=>'status', 'title'=>'Status'])
             ->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false]);
             return view('pengajuanKp.index')->with(compact('html'));
     }
+
+    /*
+    ----------------Resource
+    {
+
+            ->addColumn(['data' => null, 'name'=>'kerangka_pikir', 'title'=>'Kerangka Pikir', mRender: function (data, type, row) {
+                return '<a href="http://localhost/sikapta/db/kerangkaPikir/' + data.kerangka_pikir + '" class="btn btn-sm btn-primary" target="_blank"><i class="fa fa-download"></i></a>';
+            }])
+
+        "name": "image",
+        "data": "image",
+        "render": function (data, type, full, meta) {
+            return "<img src=\"" + data + "\" height=\"50\"/>";
+        },
+        "title": "Image",
+        "orderable": true,
+        "searchable": true
+    } 
+    */
 
     /**
      * Show the form for creating a new resource.
@@ -63,9 +81,14 @@ class PengajuanKpController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'judul_pengajuan'=> 'required',
-            'jumlah_pegawai' => 'required|numeric',
-            'kerangka_pikir' => 'required|file'
+            'judul_pengajuan'   => 'required',
+            'nm_instansi'       => 'required',
+            'judul_pengajuan'   => 'required',
+            'jumlah_pegawai'    => 'required|numeric',
+            'no_telp'           => 'required',
+            'lokasi'            => 'required',
+            'kerangka_pikir'    => 'required|file',
+            'desc_pekerjaan'    => 'required'
         ]);
 
         $pengajuan = PengajuanKp::create($request->except('kerangka_pikir'));
@@ -127,11 +150,23 @@ class PengajuanKpController extends Controller
      */
     public function destroy($id)
     {
-        PengajuanKp::destroy($id);
+        $pengajuan = pengajuanKp::find($id);
+        
+        if ($pengajuan->kerangka_pikir) {
+        $old_kerangka_pikir = $pengajuan->kerangka_pikir;
+        $filepath = public_path() . DIRECTORY_SEPARATOR . 'kerangka_pikir'
+        . DIRECTORY_SEPARATOR . $pengajuan->kerangka_pikir;
+        try {
+        File::delete($filepath);
+        } catch (FileNotFoundException $e) {
+        // File sudah dihapus/tidak ada
+        }
+        }
+        $pengajuan->delete();
         Session::flash("flash_notification", [
-        "level"=>"success",
-        "message"=>"Mahasiswa berhasil dihapus"
+            "level"=>"success",
+            "message"=>"Pengajuan berhasil dihapus"
         ]);
-        return redirect()->route('mahasiswa.pengajuanKp.index');
+        return redirect()->route('pengajuanKp.index');
     }
 }

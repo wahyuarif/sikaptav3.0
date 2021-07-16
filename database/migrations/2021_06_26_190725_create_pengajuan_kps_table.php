@@ -17,12 +17,16 @@ class CreatePengajuanKpsTable extends Migration
             $table->string('no_pengajuan');
             $table->string('judul_pengajuan');
             $table->string('kerangka_pikir');
+            $table->string('nm_instansi');
             $table->string('no_telp');
+            $table->string('lokasi');
             $table->string('jumlah_pegawai');
-            $table->string('dosen_pembimbing');
+            $table->string('desc_pekerjaan');
+            // $table->string('dosen_pembimbing');
             $table->string('status');
             $table->timestamps();
         });
+
     }
 
     /**

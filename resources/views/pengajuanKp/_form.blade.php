@@ -1,9 +1,9 @@
 
-<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-    {!! Form::label('name', 'No Pengajuan', ['class'=>'col-md-4 control-label']) !!}
+<div class="form-group{{ $errors->has('no_pengajuan') ? ' has-error' : '' }}">
+    {!! Form::label('no_pengajuan', 'No Pengajuan', ['class'=>'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('name', null, ['class'=>'form-control', 'disabled']) !!}
-        {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+        {!! Form::text('no_pengajuan', null, ['class'=>'form-control', 'disabled']) !!}
+        {!! $errors->first('no_pengajuan', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 
@@ -50,7 +50,7 @@
 <div class="form-group{{ $errors->has('jumlah_pegawai') ? ' has-error' : '' }}">
     {!! Form::label('jumlah_pegawai', 'Jumlah Pegawai', ['class'=>'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::number('jumlah_pegawai', null, ['class'=>'form-control']) !!}
+        {!! Form::number('jumlah_pegawai', null,  ['class'=>'form-control']) !!}
         {!! $errors->first('jumlah_pegawai', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
