@@ -20,6 +20,7 @@ class CreateMahasiswasTable extends Migration
             $table->date('tgl_lahir');
             $table->string('jenis_kelamin');
             $table->string('kode_prodi');
+            $table->string('status');
             $table->timestamps();
 
             $table->foreign('kode_prodi')->references('kode_prodi')->on('prodis')
